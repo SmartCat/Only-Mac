@@ -40,7 +40,7 @@
                         <items>
                             <menuItem title="Open Folder…" keyEquivalent="o" id="IAo-SY-fd9">
                                 <connections>
-                                    <action selector="openDocument:" target="-1" id="bVn-NM-KNZ"/>
+                                    <action selector="menuOpenClicked:" target="Voe-Tx-rLC" id="sCL-Y0-70w"/>
                                 </connections>
                             </menuItem>
                         </items>

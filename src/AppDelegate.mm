@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "OperatorWindowController.h"
+#import "SelectFolderHelper.h"
 
 @implementation AppDelegate
 
@@ -25,6 +26,12 @@
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
 	return YES;
+}
+
+- (IBAction)menuOpenClicked:(id)sender {
+	[SelectFolderHelper selectFolder:^(void) {
+		[self.operatorWindowController updateMediaList];
+	}];
 }
 
 @end
