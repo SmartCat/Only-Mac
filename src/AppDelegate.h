@@ -7,9 +7,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class OperatorWindowController;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (strong) IBOutlet NSWindow *window;
+@property (strong) OperatorWindowController* operatorWindowController;
 
 - (IBAction)openWindowOnAnotherMonitor:(id)sender;
 

@@ -12,6 +12,10 @@
 		B6055FE42DA33F5F004B5CD3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B6055FE32DA33F5F004B5CD3 /* Base */; };
 		B6055FE62DA33F5F004B5CD3 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6055FE52DA33F5F004B5CD3 /* main.mm */; };
 		B6055FF22DA341B2004B5CD3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6055FF12DA341B2004B5CD3 /* Cocoa.framework */; };
+		B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */; };
+		B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */; };
+		B6FAE4C62DA50FD10008453C /* OperatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */; };
+		B6FAE4CC2DA5123E0008453C /* MediaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6FAE4CA2DA5123E0008453C /* MediaTableCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +27,12 @@
 		B6055FE52DA33F5F004B5CD3 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		B6055FE72DA33F5F004B5CD3 /* OnlyM_ac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OnlyM_ac.entitlements; sourceTree = "<group>"; };
 		B6055FF12DA341B2004B5CD3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B6FAE4B42DA461C50008453C /* OperatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperatorWindowController.h; sourceTree = "<group>"; };
+		B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OperatorWindowController.mm; sourceTree = "<group>"; };
+		B6FAE4B62DA461C50008453C /* MediaTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableCellView.h; sourceTree = "<group>"; };
+		B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MediaTableCellView.mm; sourceTree = "<group>"; };
+		B6FAE4C52DA50FD00008453C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OperatorWindow.xib; sourceTree = "<group>"; };
+		B6FAE4CB2DA5123E0008453C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MediaTableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,7 @@
 		B6055FED2DA33F8C004B5CD3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				B6FAE4B82DA461C50008453C /* UI */,
 				B6055FE52DA33F5F004B5CD3 /* main.mm */,
 				B6055FDD2DA33F5D004B5CD3 /* AppDelegate.h */,
 				B6055FDE2DA33F5D004B5CD3 /* AppDelegate.mm */,
@@ -71,6 +82,8 @@
 				B6055FE02DA33F5F004B5CD3 /* Assets.xcassets */,
 				B6055FE22DA33F5F004B5CD3 /* MainMenu.xib */,
 				B6055FE72DA33F5F004B5CD3 /* OnlyM_ac.entitlements */,
+				B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */,
+				B6FAE4CA2DA5123E0008453C /* MediaTableCell.xib */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -81,6 +94,17 @@
 				B6055FF12DA341B2004B5CD3 /* Cocoa.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6FAE4B82DA461C50008453C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B6FAE4B42DA461C50008453C /* OperatorWindowController.h */,
+				B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */,
+				B6FAE4B62DA461C50008453C /* MediaTableCellView.h */,
+				B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +164,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6FAE4C62DA50FD10008453C /* OperatorWindow.xib in Resources */,
 				B6055FE12DA33F5F004B5CD3 /* Assets.xcassets in Resources */,
 				B6055FE42DA33F5F004B5CD3 /* Base in Resources */,
+				B6FAE4CC2DA5123E0008453C /* MediaTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +178,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */,
+				B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */,
 				B6055FE62DA33F5F004B5CD3 /* main.mm in Sources */,
 				B6055FDF2DA33F5D004B5CD3 /* AppDelegate.mm in Sources */,
 			);
@@ -166,6 +194,22 @@
 				B6055FE32DA33F5F004B5CD3 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6FAE4C52DA50FD00008453C /* Base */,
+			);
+			name = OperatorWindow.xib;
+			sourceTree = "<group>";
+		};
+		B6FAE4CA2DA5123E0008453C /* MediaTableCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6FAE4CB2DA5123E0008453C /* Base */,
+			);
+			name = MediaTableCell.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

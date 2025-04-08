@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import "UI/OperatorWindowController.h"
 
 @implementation AppDelegate
 
@@ -19,7 +20,9 @@
 	[button setAction:@selector(openWindowOnAnotherMonitor:)];
 	
 	// Add the button to the window's content view
-	[self.window.contentView addSubview:button];
+	//[self.window.contentView addSubview:button];
+	self.operatorWindowController = [[OperatorWindowController alloc] initWithWindowNibName:@"OperatorWindow"];
+	[self.operatorWindowController showWindow:nil];
 }
 
 - (IBAction)openWindowOnAnotherMonitor:(id)sender {
