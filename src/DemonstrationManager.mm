@@ -47,17 +47,17 @@
         return;
     }
     
-	NSRect windowFrame;
-	if (self.demoScreen) {
+    NSRect windowFrame;
+    if (self.demoScreen) {
         NSRect screenFrame = self.demoScreen.frame;
-		windowFrame = NSMakeRect(screenFrame.origin.x, screenFrame.origin.y,
+        windowFrame = NSMakeRect(screenFrame.origin.x, screenFrame.origin.y,
                                 screenFrame.size.width, screenFrame.size.height);
     } else {
         // Single monitor/Debug
-		windowFrame = NSMakeRect(800, 240, 480, 270);
+        windowFrame = NSMakeRect(800, 240, 480, 270);
     }
     
-	[self.demonstrationWindowController showWindow:nil];
+    [self.demonstrationWindowController showWindow:nil];
     [self.demonstrationWindowController.window setFrame:windowFrame display:YES];
     
     NSImage *image = [[NSImage alloc] initWithContentsOfURL:imageURL];
@@ -67,12 +67,13 @@
     }
     
     [self.demonstrationWindowController demonstrateImage:image];
+    self.isDemonstrationInProgress = YES;
 }
 
 - (void) stopDemonstration
 {
-    [self.demonstrationWindowController.window orderOut:nil];
-    [self.demonstrationWindowController close];
+	[self.demonstrationWindowController close];
+    self.isDemonstrationInProgress = NO;
 }
 
 @end

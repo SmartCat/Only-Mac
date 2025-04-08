@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) DemonstrationWindowController *demonstrationWindowController;
 @property (nonatomic, strong) NSScreen *demoScreen;
 
+@property BOOL isDemonstrationInProgress;
+
 + (instancetype)sharedManager;
 
 - (void)demonstrateImage:(NSURL *)imageURL;

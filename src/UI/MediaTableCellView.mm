@@ -12,15 +12,17 @@
     [self hideOptionalStuff];
 
     NSString *extension = url.pathExtension.lowercaseString;
-    SupportedFileType fileType = [SupportedFileTypes getFileTypeForExtension:extension];
+    self.fileType = [SupportedFileTypes getFileTypeForExtension:extension];
     
-    if (fileType == SupportedFileTypeImage) {
+    if (self.fileType == SupportedFileTypeImage) {
         [self setupForImage:url];
-    } else if (fileType == SupportedFileTypeVideo) {
+    } else if (self.fileType == SupportedFileTypeVideo) {
         [self setupForVideo:url];
-    } else if (fileType == SupportedFileTypeDocument) {
+    } else if (self.fileType == SupportedFileTypeDocument) {
         [self setupForDocument:url];
     }
+	
+	[self startUpdateTimer];
 }
 
 - (void)setupForImage:(NSURL *)url
@@ -107,6 +109,21 @@
     self.playButton.hidden = NO;
     self.stopButton.hidden = YES;
 	[[DemonstrationManager sharedManager] stopDemonstration];
+}
+
+- (void)startUpdateTimer
+{
+    self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
+}
+
+- (void)updateUI:(NSTimer *)timer
+{
+    if (self.isDemonstrating) {
+        // Update video progress
+        //self.videoProgressIndicator.doubleValue = currentTime;
+    }
+    
+	self.playButton.enabled = ![[DemonstrationManager sharedManager] isDemonstrationInProgress];
 }
 
 @end 

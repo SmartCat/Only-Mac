@@ -14,6 +14,7 @@
 //@property (nonatomic, weak) IBOutlet AVPlayerView *videoView;
 
 - (void)demonstrateImage:(NSImage *)image;
+- (void)stopDemonstration;
 
 @end
 

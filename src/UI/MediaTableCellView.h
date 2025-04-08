@@ -16,8 +16,11 @@
 @property (nonatomic, weak) IBOutlet NSImageView *tagDocument;
 
 @property (nonatomic, strong) NSURL *fileUrl;
+@property (nonatomic, strong) NSTimer *progressTimer;
+
 @property double videoDuration;
 @property BOOL isDemonstrating;
+@property SupportedFileType fileType;
 
 - (void)setupFromURL:(NSURL *)url;
 - (NSString *)formatTime:(double)seconds;

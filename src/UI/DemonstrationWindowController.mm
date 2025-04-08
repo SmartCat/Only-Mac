@@ -11,25 +11,21 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
-    // Configure window
-    [self.window setStyleMask:NSWindowStyleMaskBorderless];
-    [self.window setOpaque:NO];
-    [self.window setBackgroundColor:[NSColor clearColor]];
-    [self.window setLevel:NSFloatingWindowLevel];
+	[self.window setBackgroundColor:[NSColor blackColor]];
+    [self stopDemonstration];
 }
 
 - (void)demonstrateImage:(NSImage *)image
 {
-    if (!image) {
-        NSLog(@"No image provided");
-        return;
-    }
-    
     self.imageView.hidden = NO;
     
     // Set the image
     self.imageView.image = image;
+}
+
+- (void)stopDemonstration
+{
+    self.imageView.hidden = YES;
 }
 
 @end
