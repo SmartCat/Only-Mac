@@ -4,6 +4,7 @@
 #import "SettingsManager.h"
 #import "EnumerateFilesHelper.h"
 #import "DemonstrationManager.h"
+#import "LocalizationManager.h"
 
 @interface OperatorWindowController () <NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource>
 @end
@@ -18,6 +19,7 @@
     //self.mediaTableView.rowHeight = 100; // Adjust based on your needs
 	self.mediaFiles = @[];
 	self.imgMonitorConnected.hidden = YES;
+	[self startUpdateTimer];
 }
 
 - (IBAction)selectFolderClicked:(id)sender {
@@ -43,13 +45,13 @@
 - (void)updateUI:(NSTimer *)timer
 {
     NSScreen *screen = [DemonstrationManager sharedManager].demoScreen;
-    self.monitorInfoLabel.hidden = screen == nil;
-    self.imgMonitorConnected.hidden = screen != nil;
-    self.imgMonitorDisconnected.hidden = screen == nil;
+    self.imgMonitorConnected.hidden = screen == nil;
+    self.imgMonitorDisconnected.hidden = screen != nil;
     if (screen) {
-        self.monitorInfoLabel.stringValue = [NSString stringWithFormat:@"Monitor: %@", screen.localizedName];
+		NSString *localizedLabel = [[LocalizationManager sharedManager] localizedStringForKey:@"operator_window.monitor"];
+        self.monitorInfoLabel.stringValue = [NSString stringWithFormat:@"%@: %@", localizedLabel, screen.localizedName];
 	} else {
-		self.monitorInfoLabel.stringValue = @"Monitor not connected";
+		self.monitorInfoLabel.stringValue = [[LocalizationManager sharedManager] localizedStringForKey:@"operator_window.no_monitor"];
 	}
 }
 

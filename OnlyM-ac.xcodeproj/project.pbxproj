@@ -20,6 +20,8 @@
 		B67504DA2DA574E40004FFC7 /* DemonstrationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B67504D92DA574E40004FFC7 /* DemonstrationManager.mm */; };
 		B67504DD2DA575710004FFC7 /* DemonstrationWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B67504DC2DA575710004FFC7 /* DemonstrationWindowController.mm */; };
 		B67504E02DA5764D0004FFC7 /* DemonstrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B67504DE2DA5764D0004FFC7 /* DemonstrationWindow.xib */; };
+		B6922FF12DA5C90600F5769D /* LocalizationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6922FEF2DA5C90600F5769D /* LocalizationManager.mm */; };
+		B69230002DA5D0E100F5769D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B6922FFE2DA5D0E100F5769D /* Localizable.xcstrings */; };
 		B6E280202DA517BD00483567 /* SettingsManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6E2801F2DA517BD00483567 /* SettingsManager.mm */; };
 		B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */; };
 		B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */; };
@@ -48,6 +50,9 @@
 		B67504DB2DA575710004FFC7 /* DemonstrationWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemonstrationWindowController.h; sourceTree = "<group>"; };
 		B67504DC2DA575710004FFC7 /* DemonstrationWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DemonstrationWindowController.mm; sourceTree = "<group>"; };
 		B67504DF2DA5764D0004FFC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DemonstrationWindow.xib; sourceTree = "<group>"; };
+		B6922FEF2DA5C90600F5769D /* LocalizationManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalizationManager.mm; sourceTree = "<group>"; };
+		B6922FF02DA5C90600F5769D /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
+		B69230042DA5D1C400F5769D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Base; path = Base.lproj/Localizable.xcstrings; sourceTree = "<group>"; };
 		B6E2801E2DA517BD00483567 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
 		B6E2801F2DA517BD00483567 /* SettingsManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SettingsManager.mm; sourceTree = "<group>"; };
 		B6FAE4B42DA461C50008453C /* OperatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperatorWindowController.h; sourceTree = "<group>"; };
@@ -101,6 +106,8 @@
 				B6E2801F2DA517BD00483567 /* SettingsManager.mm */,
 				B67504D82DA574E40004FFC7 /* DemonstrationManager.h */,
 				B67504D92DA574E40004FFC7 /* DemonstrationManager.mm */,
+				B6922FF02DA5C90600F5769D /* LocalizationManager.h */,
+				B6922FEF2DA5C90600F5769D /* LocalizationManager.mm */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -113,6 +120,7 @@
 				B6055FE72DA33F5F004B5CD3 /* OnlyM_ac.entitlements */,
 				B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */,
 				B67504DE2DA5764D0004FFC7 /* DemonstrationWindow.xib */,
+				B6922FFE2DA5D0E100F5769D /* Localizable.xcstrings */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = B6055FD12DA33F5D004B5CD3;
 			productRefGroup = B6055FDB2DA33F5D004B5CD3 /* Products */;
@@ -211,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6FAE4C62DA50FD10008453C /* OperatorWindow.xib in Resources */,
+				B69230002DA5D0E100F5769D /* Localizable.xcstrings in Resources */,
 				B6055FE12DA33F5F004B5CD3 /* Assets.xcassets in Resources */,
 				B6055FE42DA33F5F004B5CD3 /* Base in Resources */,
 				B67504E02DA5764D0004FFC7 /* DemonstrationWindow.xib in Resources */,
@@ -229,6 +239,7 @@
 				B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */,
 				B6E280202DA517BD00483567 /* SettingsManager.mm in Sources */,
 				B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */,
+				B6922FF12DA5C90600F5769D /* LocalizationManager.mm in Sources */,
 				B65FD9252DA51D32003D8FE8 /* SelectFolderHelper.mm in Sources */,
 				B67504DD2DA575710004FFC7 /* DemonstrationWindowController.mm in Sources */,
 				B67504DA2DA574E40004FFC7 /* DemonstrationManager.mm in Sources */,
@@ -254,6 +265,14 @@
 				B67504DF2DA5764D0004FFC7 /* Base */,
 			);
 			name = DemonstrationWindow.xib;
+			sourceTree = "<group>";
+		};
+		B6922FFE2DA5D0E100F5769D /* Localizable.xcstrings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B69230042DA5D1C400F5769D /* Base */,
+			);
+			name = Localizable.xcstrings;
 			sourceTree = "<group>";
 		};
 		B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */ = {

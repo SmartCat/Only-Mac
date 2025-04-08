@@ -176,7 +176,7 @@
                         </connections>
                     </button>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XA3-np-zU0">
-                        <rect key="frame" x="83" y="14" width="257" height="16"/>
+                        <rect key="frame" x="3" y="14" width="337" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="file://" id="7Pa-J2-c0L">
                             <font key="font" metaFont="system"/>
