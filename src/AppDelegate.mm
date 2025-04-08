@@ -6,7 +6,7 @@
 //
 
 #import "AppDelegate.h"
-#import "UI/OperatorWindowController.h"
+#import "OperatorWindowController.h"
 
 @implementation AppDelegate
 
