@@ -16,7 +16,7 @@
 @property (nonatomic, weak) IBOutlet NSImageView *tagDocument;
 
 @property (nonatomic, strong) NSURL *fileUrl;
-@property (nonatomic, strong) NSTimer *progressTimer;
+@property (nonatomic, strong) NSTimer *updateTimer;
 
 @property double videoDuration;
 @property BOOL isDemonstrating;

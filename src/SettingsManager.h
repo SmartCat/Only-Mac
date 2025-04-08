@@ -11,8 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURL *)lastMediaPath;
 
 // General settings
-- (void)setAutoPlay:(BOOL)autoPlay;
-- (BOOL)autoPlay;
 
 @end
 

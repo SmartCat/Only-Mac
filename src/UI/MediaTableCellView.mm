@@ -126,7 +126,7 @@
 
 - (void)startUpdateTimer
 {
-    self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
+    self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
 }
 
 - (void)updateUI:(NSTimer *)timer

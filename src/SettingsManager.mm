@@ -1,7 +1,6 @@
 #import "SettingsManager.h"
 
 static NSString *const kLastMediaPathKey = @"LastMediaPath";
-static NSString *const kAutoPlayKey = @"AutoPlay";
 
 @implementation SettingsManager {
     NSUserDefaults *_defaults;
@@ -37,13 +36,5 @@ static NSString *const kAutoPlayKey = @"AutoPlay";
 
 #pragma mark - General Settings
 
-- (void)setAutoPlay:(BOOL)autoPlay {
-    [_defaults setBool:autoPlay forKey:kAutoPlayKey];
-    [_defaults synchronize];
-}
-
-- (BOOL)autoPlay {
-    return [_defaults boolForKey:kAutoPlayKey];
-}
 
 @end 
