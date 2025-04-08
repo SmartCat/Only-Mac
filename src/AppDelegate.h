@@ -13,7 +13,5 @@
 
 @property (strong) OperatorWindowController* operatorWindowController;
 
-- (IBAction)openWindowOnAnotherMonitor:(id)sender;
-
 @end
 
