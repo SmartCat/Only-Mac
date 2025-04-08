@@ -27,7 +27,7 @@
                     <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IMB-Ah-WYG">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="TYi-wj-r0N"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="TYi-wj-r0N"/>
                     </imageView>
                     <avPlayerView fixedFrame="YES" controlsStyle="none" translatesAutoresizingMaskIntoConstraints="NO" id="cLe-8Z-4Aa">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
