@@ -16,7 +16,7 @@
         if (result == NSModalResponseOK) {
             NSURL *selectedURL = panel.URL;
             if (selectedURL) {
-                [[SettingsManager sharedManager] setLastMediaPath: selectedURL.absoluteString];
+                [[SettingsManager sharedManager] setLastMediaPath: selectedURL];
             }
         }
         if (completionHandler) {

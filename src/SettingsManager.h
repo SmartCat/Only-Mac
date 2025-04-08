@@ -7,8 +7,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedManager;
 
 // Media settings
-- (void)setLastMediaPath:(NSString *)path;
-- (NSString *)lastMediaPath;
+- (void)setLastMediaPath:(NSURL *)path;
+- (NSURL *)lastMediaPath;
 
 // General settings
 - (void)setAutoPlay:(BOOL)autoPlay;

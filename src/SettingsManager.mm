@@ -26,13 +26,13 @@ static NSString *const kAutoPlayKey = @"AutoPlay";
 
 #pragma mark - Media Settings
 
-- (void)setLastMediaPath:(NSString *)path {
-    [_defaults setObject:path forKey:kLastMediaPathKey];
+- (void)setLastMediaPath:(NSURL *)path {
+    [_defaults setURL:path forKey:kLastMediaPathKey];
     [_defaults synchronize];
 }
 
-- (NSString *)lastMediaPath {
-    return [_defaults stringForKey:kLastMediaPathKey] ?: @"";
+- (NSURL *)lastMediaPath {
+	return [_defaults URLForKey:kLastMediaPathKey] ?: nil;
 }
 
 #pragma mark - General Settings
