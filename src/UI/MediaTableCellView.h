@@ -23,7 +23,7 @@
 @property SupportedFileType fileType;
 
 - (void)setupFromURL:(NSURL *)url;
-+ (NSString *)formatTime:(double)seconds;
+- (NSString *)formatTime:(double)seconds;
 
 - (IBAction)playClicked:(id)sender;
 - (IBAction)stopClicked:(id)sender;
