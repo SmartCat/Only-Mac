@@ -11,6 +11,7 @@ typedef NS_ENUM(NSInteger, SupportedFileType) {
 };
 
 + (NSArray<NSString *> *)getExtensionsForFileType:(SupportedFileType)fileType;
++ (SupportedFileType)getFileTypeForExtension:(NSString *)extension;
 
 @end
 

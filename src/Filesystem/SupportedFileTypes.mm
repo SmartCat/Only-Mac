@@ -14,4 +14,15 @@
 			return @[];
     }
 }
+
++ (SupportedFileType)getFileTypeForExtension:(NSString *)extension {
+	for (NSInteger i = 0; i < SupportedFileTypeCount; i++) {
+		NSArray<NSString *> *extensions = [self getExtensionsForFileType:SupportedFileType(i)];
+		if ([extensions containsObject:extension.lowercaseString]) {
+			return SupportedFileType(i);
+		}
+	}
+	return SupportedFileTypeCount;
+}
+
 @end
