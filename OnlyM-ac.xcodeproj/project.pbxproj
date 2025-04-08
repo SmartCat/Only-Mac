@@ -15,6 +15,8 @@
 		B65FD9252DA51D32003D8FE8 /* SelectFolderHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B65FD9232DA51D32003D8FE8 /* SelectFolderHelper.mm */; };
 		B67504D32DA5441F0004FFC7 /* SupportedFileTypes.mm in Sources */ = {isa = PBXBuildFile; fileRef = B67504D12DA5441F0004FFC7 /* SupportedFileTypes.mm */; };
 		B67504D42DA5441F0004FFC7 /* EnumerateFilesHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B67504D22DA5441F0004FFC7 /* EnumerateFilesHelper.mm */; };
+		B67504D52DA56D9C0004FFC7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6055FF32DA341B2004B5CD3 /* AVFoundation.framework */; };
+		B67504D72DA56E980004FFC7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67504D62DA56E980004FFC7 /* CoreMedia.framework */; };
 		B6E280202DA517BD00483567 /* SettingsManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6E2801F2DA517BD00483567 /* SettingsManager.mm */; };
 		B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */; };
 		B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */; };
@@ -30,12 +32,14 @@
 		B6055FE52DA33F5F004B5CD3 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		B6055FE72DA33F5F004B5CD3 /* OnlyM_ac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OnlyM_ac.entitlements; sourceTree = "<group>"; };
 		B6055FF12DA341B2004B5CD3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B6055FF32DA341B2004B5CD3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B65FD9222DA51D32003D8FE8 /* SelectFolderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFolderHelper.h; sourceTree = "<group>"; };
 		B65FD9232DA51D32003D8FE8 /* SelectFolderHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SelectFolderHelper.mm; sourceTree = "<group>"; };
 		B67504CF2DA5441F0004FFC7 /* SupportedFileTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportedFileTypes.h; sourceTree = "<group>"; };
 		B67504D02DA5441F0004FFC7 /* EnumerateFilesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumerateFilesHelper.h; sourceTree = "<group>"; };
 		B67504D12DA5441F0004FFC7 /* SupportedFileTypes.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SupportedFileTypes.mm; sourceTree = "<group>"; };
 		B67504D22DA5441F0004FFC7 /* EnumerateFilesHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EnumerateFilesHelper.mm; sourceTree = "<group>"; };
+		B67504D62DA56E980004FFC7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B6E2801E2DA517BD00483567 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
 		B6E2801F2DA517BD00483567 /* SettingsManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SettingsManager.mm; sourceTree = "<group>"; };
 		B6FAE4B42DA461C50008453C /* OperatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperatorWindowController.h; sourceTree = "<group>"; };
@@ -50,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B67504D72DA56E980004FFC7 /* CoreMedia.framework in Frameworks */,
+				B67504D52DA56D9C0004FFC7 /* AVFoundation.framework in Frameworks */,
 				B6055FF22DA341B2004B5CD3 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,7 +109,9 @@
 		B6055FF02DA341B2004B5CD3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B67504D62DA56E980004FFC7 /* CoreMedia.framework */,
 				B6055FF12DA341B2004B5CD3 /* Cocoa.framework */,
+				B6055FF32DA341B2004B5CD3 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

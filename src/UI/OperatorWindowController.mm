@@ -27,8 +27,8 @@
 - (void)updateMediaList {
     NSURL *folderURL = [SettingsManager sharedManager].lastMediaPath;
     if (folderURL) {
-        self.mediaFiles = [EnumerateFilesHelper enumerateFilesInFolder:folderURL];
-        [self.mediaTableView reloadData];
+		self.mediaFiles = [EnumerateFilesHelper enumerateFilesInFolder:folderURL];
+		[self.mediaTableView reloadData];
     }
 }
 
@@ -43,17 +43,7 @@
     
     if (row < self.mediaFiles.count) {
         NSURL *fileURL = self.mediaFiles[row];
-        cellView.titleLabel.stringValue = fileURL.lastPathComponent;
-        
-        // Set thumbnail if it's an image
-        if ([@[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tiff", @"webp", @"heic", @"heif"] containsObject:fileURL.pathExtension.lowercaseString]) {
-            NSImage *image = [[NSImage alloc] initWithContentsOfURL:fileURL];
-            cellView.thumbnailView.image = image;
-        }
-        
-        // Reset progress bar
-        cellView.progressBar.doubleValue = 0;
-        cellView.progressBar.hidden = YES;
+        [cellView setupFromURL:fileURL];
     }
     
     return cellView;
