@@ -8,15 +8,21 @@
 @property (nonatomic, weak) IBOutlet NSTextField *currentVideoPosLabel;
 @property (nonatomic, weak) IBOutlet NSTextField *totalVideoDurationLabel;
 @property (nonatomic, weak) IBOutlet NSButton *playButton;
+@property (nonatomic, weak) IBOutlet NSButton *stopButton;
 @property (nonatomic, weak) IBOutlet NSSlider *videoProgressIndicator;
 // tags
 @property (nonatomic, weak) IBOutlet NSImageView *tagImage;
 @property (nonatomic, weak) IBOutlet NSImageView *tagVideo;
 @property (nonatomic, weak) IBOutlet NSImageView *tagDocument;
 
+@property (nonatomic, strong) NSURL *fileUrl;
 @property double videoDuration;
+@property BOOL isDemonstrating;
 
 - (void)setupFromURL:(NSURL *)url;
 - (NSString *)formatTime:(double)seconds;
+
+- (IBAction)playClicked:(id)sender;
+- (IBAction)stopClicked:(id)sender;
 
 @end

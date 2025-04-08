@@ -17,6 +17,9 @@
 		B67504D42DA5441F0004FFC7 /* EnumerateFilesHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B67504D22DA5441F0004FFC7 /* EnumerateFilesHelper.mm */; };
 		B67504D52DA56D9C0004FFC7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6055FF32DA341B2004B5CD3 /* AVFoundation.framework */; };
 		B67504D72DA56E980004FFC7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67504D62DA56E980004FFC7 /* CoreMedia.framework */; };
+		B67504DA2DA574E40004FFC7 /* DemonstrationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B67504D92DA574E40004FFC7 /* DemonstrationManager.mm */; };
+		B67504DD2DA575710004FFC7 /* DemonstrationWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B67504DC2DA575710004FFC7 /* DemonstrationWindowController.mm */; };
+		B67504E02DA5764D0004FFC7 /* DemonstrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B67504DE2DA5764D0004FFC7 /* DemonstrationWindow.xib */; };
 		B6E280202DA517BD00483567 /* SettingsManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6E2801F2DA517BD00483567 /* SettingsManager.mm */; };
 		B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */; };
 		B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */; };
@@ -40,6 +43,11 @@
 		B67504D12DA5441F0004FFC7 /* SupportedFileTypes.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SupportedFileTypes.mm; sourceTree = "<group>"; };
 		B67504D22DA5441F0004FFC7 /* EnumerateFilesHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EnumerateFilesHelper.mm; sourceTree = "<group>"; };
 		B67504D62DA56E980004FFC7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B67504D82DA574E40004FFC7 /* DemonstrationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemonstrationManager.h; sourceTree = "<group>"; };
+		B67504D92DA574E40004FFC7 /* DemonstrationManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DemonstrationManager.mm; sourceTree = "<group>"; };
+		B67504DB2DA575710004FFC7 /* DemonstrationWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemonstrationWindowController.h; sourceTree = "<group>"; };
+		B67504DC2DA575710004FFC7 /* DemonstrationWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DemonstrationWindowController.mm; sourceTree = "<group>"; };
+		B67504DF2DA5764D0004FFC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DemonstrationWindow.xib; sourceTree = "<group>"; };
 		B6E2801E2DA517BD00483567 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
 		B6E2801F2DA517BD00483567 /* SettingsManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SettingsManager.mm; sourceTree = "<group>"; };
 		B6FAE4B42DA461C50008453C /* OperatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperatorWindowController.h; sourceTree = "<group>"; };
@@ -91,6 +99,8 @@
 				B6055FDE2DA33F5D004B5CD3 /* AppDelegate.mm */,
 				B6E2801E2DA517BD00483567 /* SettingsManager.h */,
 				B6E2801F2DA517BD00483567 /* SettingsManager.mm */,
+				B67504D82DA574E40004FFC7 /* DemonstrationManager.h */,
+				B67504D92DA574E40004FFC7 /* DemonstrationManager.mm */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -102,6 +112,7 @@
 				B6055FE22DA33F5F004B5CD3 /* MainMenu.xib */,
 				B6055FE72DA33F5F004B5CD3 /* OnlyM_ac.entitlements */,
 				B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */,
+				B67504DE2DA5764D0004FFC7 /* DemonstrationWindow.xib */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -136,6 +147,8 @@
 				B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */,
 				B6FAE4B62DA461C50008453C /* MediaTableCellView.h */,
 				B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */,
+				B67504DB2DA575710004FFC7 /* DemonstrationWindowController.h */,
+				B67504DC2DA575710004FFC7 /* DemonstrationWindowController.mm */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -200,6 +213,7 @@
 				B6FAE4C62DA50FD10008453C /* OperatorWindow.xib in Resources */,
 				B6055FE12DA33F5F004B5CD3 /* Assets.xcassets in Resources */,
 				B6055FE42DA33F5F004B5CD3 /* Base in Resources */,
+				B67504E02DA5764D0004FFC7 /* DemonstrationWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +230,8 @@
 				B6E280202DA517BD00483567 /* SettingsManager.mm in Sources */,
 				B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */,
 				B65FD9252DA51D32003D8FE8 /* SelectFolderHelper.mm in Sources */,
+				B67504DD2DA575710004FFC7 /* DemonstrationWindowController.mm in Sources */,
+				B67504DA2DA574E40004FFC7 /* DemonstrationManager.mm in Sources */,
 				B6055FE62DA33F5F004B5CD3 /* main.mm in Sources */,
 				B6055FDF2DA33F5D004B5CD3 /* AppDelegate.mm in Sources */,
 			);
@@ -230,6 +246,14 @@
 				B6055FE32DA33F5F004B5CD3 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		B67504DE2DA5764D0004FFC7 /* DemonstrationWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B67504DF2DA5764D0004FFC7 /* Base */,
+			);
+			name = DemonstrationWindow.xib;
 			sourceTree = "<group>";
 		};
 		B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */ = {
