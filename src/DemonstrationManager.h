@@ -22,10 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedManager;
 
 - (void)demonstrateImage:(NSURL *)imageURL;
-- (void)demonstrateVideo:(NSURL *)videoURL;
+- (void)demonstrateVideo:(NSURL *)videoURL startPos:(double)startPos;
 - (void)demonstrateDocument:(NSURL *)documentURL;
 
 - (void)stopDemonstration;
+
+- (double) getCurrentVideoTime;
 
 @end
 

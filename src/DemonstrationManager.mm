@@ -27,17 +27,42 @@
         // Initialize the demonstration window
         self.demonstrationWindowController = [[DemonstrationWindowController alloc] initWithWindowNibName:@"DemonstrationWindow"];
         
-        NSArray<NSScreen *> *screens = [NSScreen screens];
-        // Find the first screen that's not the main screen
-        // TODO: Get screen from settings
-        for (NSScreen *screen in screens) {
-            if (screen != [NSScreen mainScreen]) {
-                self.demoScreen = screen;
-                break;
-            }
-        }
+        // Set up screen change observation
+        [[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(screenDidChange:)
+													 name:NSApplicationDidChangeScreenParametersNotification
+												   object:nil];
+        
+        [self updateDemoScreen];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)screenDidChange:(NSNotification *)notification
+{
+    [self updateDemoScreen];
+    
+    if (self.isDemonstrationInProgress) {
+        [self stopDemonstration];
+    }
+}
+
+- (void)updateDemoScreen
+{
+    NSArray<NSScreen *> *screens = [NSScreen screens];
+    // Find the first screen that's not the main screen
+    // TODO: Get screen from settings
+    for (NSScreen *screen in screens) {
+        if (screen != [NSScreen mainScreen]) {
+            self.demoScreen = screen;
+            break;
+        }
+    }
 }
 
 - (void) demonstrateImage:(NSURL *)imageURL
@@ -47,6 +72,34 @@
         return;
     }
     
+    [self createWindow];
+    
+    [self.demonstrationWindowController demonstrateImage:imageURL];
+    self.isDemonstrationInProgress = YES;
+}
+
+- (void) demonstrateVideo:(NSURL *)videoURL startPos:(double)startPos
+{
+    if (!videoURL) {
+        NSLog(@"No video URL provided");
+        return;
+    }
+    
+    [self createWindow];
+    
+    [self.demonstrationWindowController demonstrateVideo:videoURL startPos:startPos];
+    self.isDemonstrationInProgress = YES;
+}
+
+- (void) stopDemonstration
+{
+	[self.demonstrationWindowController stopDemonstration];
+	[self.demonstrationWindowController close];
+    self.isDemonstrationInProgress = NO;
+}
+
+- (void) createWindow
+{
     NSRect windowFrame;
     if (self.demoScreen) {
         NSRect screenFrame = self.demoScreen.frame;
@@ -59,21 +112,11 @@
     
     [self.demonstrationWindowController showWindow:nil];
     [self.demonstrationWindowController.window setFrame:windowFrame display:YES];
-    
-    NSImage *image = [[NSImage alloc] initWithContentsOfURL:imageURL];
-    if (!image) {
-        NSLog(@"Failed to load image from URL: %@", imageURL);
-        return;
-    }
-    
-    [self.demonstrationWindowController demonstrateImage:image];
-    self.isDemonstrationInProgress = YES;
 }
 
-- (void) stopDemonstration
+- (double) getCurrentVideoTime
 {
-	[self.demonstrationWindowController close];
-    self.isDemonstrationInProgress = NO;
+    return [self.demonstrationWindowController getCurrentVideoTime];
 }
 
 @end

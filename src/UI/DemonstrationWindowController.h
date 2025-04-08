@@ -11,10 +11,14 @@
 @interface DemonstrationWindowController : NSWindowController
 
 @property (nonatomic, weak) IBOutlet NSImageView *imageView;
-//@property (nonatomic, weak) IBOutlet AVPlayerView *videoView;
+@property (nonatomic, weak) IBOutlet AVPlayerView *videoView;
+@property (nonatomic, strong) AVPlayer *player;
 
-- (void)demonstrateImage:(NSImage *)image;
+- (void)demonstrateImage:(NSURL *)imageURL;
+- (void)demonstrateVideo:(NSURL *)videoURL startPos:(double)startPos;
 - (void)stopDemonstration;
+
+- (double) getCurrentVideoTime;
 
 @end
 

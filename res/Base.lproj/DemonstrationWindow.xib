@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <plugIn identifier="com.apple.AVKitIBPlugin" version="22690"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -8,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="DemonstrationWindowController">
             <connections>
                 <outlet property="imageView" destination="IMB-Ah-WYG" id="4rF-m7-dhF"/>
+                <outlet property="videoView" destination="cLe-8Z-4Aa" id="5Xt-Oc-pTK"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="xYZ-ab-123"/>
             </connections>
         </customObject>
@@ -27,6 +29,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="TYi-wj-r0N"/>
                     </imageView>
+                    <avPlayerView fixedFrame="YES" controlsStyle="none" translatesAutoresizingMaskIntoConstraints="NO" id="cLe-8Z-4Aa">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </avPlayerView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="-34" y="129"/>

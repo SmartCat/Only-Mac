@@ -100,7 +100,14 @@
 	self.isDemonstrating = YES;
     self.playButton.hidden = YES;
     self.stopButton.hidden = NO;
-	[[DemonstrationManager sharedManager] demonstrateImage:self.fileUrl];
+	if (self.fileType == SupportedFileTypeImage)
+	{
+		[[DemonstrationManager sharedManager] demonstrateImage:self.fileUrl];
+	} else if (self.fileType == SupportedFileTypeVideo)
+	{
+		double startPos = self.videoProgressIndicator.doubleValue;
+		[[DemonstrationManager sharedManager] demonstrateVideo:self.fileUrl startPos:startPos];
+	}
 }
 
 - (IBAction)stopClicked:(id)sender
@@ -111,6 +118,12 @@
 	[[DemonstrationManager sharedManager] stopDemonstration];
 }
 
+- (IBAction)videoProgressChanged:(id)sender
+{
+    double currentTime = self.videoProgressIndicator.doubleValue;
+    self.currentVideoPosLabel.stringValue = [self formatTime:currentTime];
+}
+
 - (void)startUpdateTimer
 {
     self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
@@ -118,9 +131,11 @@
 
 - (void)updateUI:(NSTimer *)timer
 {
-    if (self.isDemonstrating) {
+    if (self.isDemonstrating && self.fileType == SupportedFileTypeVideo) {
         // Update video progress
-        //self.videoProgressIndicator.doubleValue = currentTime;
+		double currentVideoTime = [[DemonstrationManager sharedManager] getCurrentVideoTime];
+		self.videoProgressIndicator.doubleValue = currentVideoTime;
+        self.currentVideoPosLabel.stringValue = [self formatTime:currentVideoTime];
     }
     
 	self.playButton.enabled = ![[DemonstrationManager sharedManager] isDemonstrationInProgress];
