@@ -19,6 +19,10 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pathExtension.lowercaseString IN %@", extensions];
     files = [files filteredArrayUsingPredicate:predicate];
     
+    // Sort files by name
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastPathComponent.lowercaseString" ascending:YES];
+    files = [files sortedArrayUsingDescriptors:@[sortDescriptor]];
+    
 	if (!error)
 	{
 		return files;
