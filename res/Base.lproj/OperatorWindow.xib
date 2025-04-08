@@ -8,7 +8,11 @@
         <customObject id="-2" userLabel="File's Owner" customClass="OperatorWindowController">
             <connections>
                 <outlet property="btnSelectFolder" destination="Z0h-Pv-TMK" id="kSA-EZ-0Xw"/>
+                <outlet property="dirInfoLabel" destination="XA3-np-zU0" id="eIH-si-i7q"/>
+                <outlet property="imgMonitorConnected" destination="2OD-l1-nbo" id="hLX-Wp-9KO"/>
+                <outlet property="imgMonitorDisconnected" destination="rS2-ZX-WyK" id="GAo-S4-x3Z"/>
                 <outlet property="mediaTableView" destination="AE7-SI-Px8" id="Anm-vb-1x3"/>
+                <outlet property="monitorInfoLabel" destination="yr2-9h-LUU" id="hlW-0q-qSw"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -161,8 +165,8 @@
                         </scroller>
                     </scrollView>
                     <button identifier="selectFolderButton" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z0h-Pv-TMK" userLabel="selectFolderButton">
-                        <rect key="frame" x="7" y="12" width="48.5" height="48"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="346" y="12" width="48.5" height="48"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="folder.fill.badge.plus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="XAF-xj-NLs">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -171,19 +175,31 @@
                             <action selector="selectFolderClicked:" target="-2" id="v4l-QP-6Ib"/>
                         </connections>
                     </button>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yr2-9h-LUU">
-                        <rect key="frame" x="83" y="40" width="142" height="16"/>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XA3-np-zU0">
+                        <rect key="frame" x="83" y="14" width="257" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Monitor not connected" id="yil-SP-jjb">
+                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="file://" id="7Pa-J2-c0L">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XA3-np-zU0">
-                        <rect key="frame" x="85" y="20" width="80" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Folder used:" id="7Pa-J2-c0L">
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rS2-ZX-WyK" userLabel="imgMonitorDisconnected">
+                        <rect key="frame" x="0.0" y="37" width="30" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="display.trianglebadge.exclamationmark" catalog="system" id="0qb-PB-Ezy"/>
+                        <color key="contentTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                    </imageView>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2OD-l1-nbo" userLabel="imgMonitorConnected">
+                        <rect key="frame" x="0.0" y="37" width="29.5" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="display.and.arrow.down" catalog="system" id="NAf-Mo-lDy"/>
+                        <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                    </imageView>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yr2-9h-LUU">
+                        <rect key="frame" x="33" y="45" width="307" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Monitor not connected" id="yil-SP-jjb">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -195,6 +211,8 @@
         </window>
     </objects>
     <resources>
+        <image name="display.and.arrow.down" catalog="system" width="19" height="17"/>
+        <image name="display.trianglebadge.exclamationmark" catalog="system" width="21" height="16"/>
         <image name="folder.fill.badge.plus" catalog="system" width="20" height="15"/>
         <image name="movieclapper.fill" catalog="system" width="19" height="17"/>
         <image name="photo.fill" catalog="system" width="18" height="14"/>
