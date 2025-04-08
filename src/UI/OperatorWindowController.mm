@@ -4,7 +4,7 @@
 #import "SettingsManager.h"
 #import "EnumerateFilesHelper.h"
 
-@interface OperatorWindowController () <NSTableViewDelegate, NSTableViewDataSource>
+@interface OperatorWindowController () <NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource>
 @end
 
 @implementation OperatorWindowController
@@ -47,6 +47,10 @@
     }
     
     return cellView;
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [NSApp terminate:self];
 }
 
 @end
