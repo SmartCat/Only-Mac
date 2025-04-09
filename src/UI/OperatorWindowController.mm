@@ -20,6 +20,8 @@
 	self.mediaFiles = @[];
 	self.imgMonitorConnected.hidden = YES;
 	[self startUpdateTimer];
+	
+	[self updateMediaList];
 }
 
 - (IBAction)selectFolderClicked:(id)sender {
