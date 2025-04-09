@@ -107,7 +107,7 @@
                                 screenFrame.size.width, screenFrame.size.height);
     } else {
         // Single monitor/Debug
-        windowFrame = NSMakeRect(800, 240, 480, 270);
+        windowFrame = NSMakeRect(600, 240, 480, 270);
     }
     
     [self.demonstrationWindowController showWindow:nil];
