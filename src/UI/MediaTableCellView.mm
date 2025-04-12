@@ -5,6 +5,9 @@
 @implementation MediaTableCellView
 
 - (void)setupFromFileHandler:(FileHandler *)fileHandler {
+	// Clean up previous state
+	[self cleanup];
+	
 	self.fileHandler = fileHandler;
 	self.titleLabel.stringValue = fileHandler.fileURL.lastPathComponent;
     
@@ -19,6 +22,29 @@
     }
 	
 	[self startUpdateTimer];
+}
+
+- (void)cleanup {
+	// Stop and invalidate any existing timer
+	[self.updateTimer invalidate];
+	self.updateTimer = nil;
+	
+	// Clear any existing data
+	self.fileHandler = nil;
+	self.titleLabel.stringValue = @"";
+	self.thumbnailView.image = nil;
+	self.currentVideoPosLabel.stringValue = @"";
+	self.totalVideoDurationLabel.stringValue = @"";
+	self.videoProgressIndicator.doubleValue = 0;
+	self.videoDuration = 0;
+	
+	// Hide all optional UI elements
+	[self hideOptionalStuff];
+}
+
+- (void)prepareForReuse {
+	[super prepareForReuse];
+	[self cleanup];
 }
 
 - (void)setupForImage:(NSURL *)url
