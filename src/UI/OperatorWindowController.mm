@@ -16,8 +16,7 @@
     
     self.mediaTableView.delegate = self;
     self.mediaTableView.dataSource = self;
-    //self.mediaTableView.rowHeight = 100; // Adjust based on your needs
-	self.mediaFiles = @[];
+	self.mediaFileHandlers = [NSMutableArray array];
 	self.imgMonitorConnected.hidden = YES;
 	[self startUpdateTimer];
 	
@@ -33,9 +32,17 @@
 - (void)updateMediaList {
     NSURL *folderURL = [SettingsManager sharedManager].lastMediaPath;
     if (folderURL) {
-        self.dirInfoLabel.stringValue = [folderURL absoluteString];  
-		self.mediaFiles = [EnumerateFilesHelper enumerateFilesInFolder:folderURL];
+		[self.mediaFileHandlers removeAllObjects];
+        self.dirInfoLabel.stringValue = [folderURL absoluteString];
+        NSArray<NSURL *> *fileUrls = [EnumerateFilesHelper enumerateFilesInFolder:folderURL];
+        for (int i = 0; i < fileUrls.count; i++) {
+            NSURL *fileUrl = fileUrls[i];
+            FileHandler *fileHandler = [[FileHandler alloc] initWithFileId:i fileURL:fileUrl];
+            [self.mediaFileHandlers addObject:fileHandler];
+        }
 		[self.mediaTableView reloadData];
+		
+		[[DemonstrationManager sharedManager] stopDemonstration];
     }
 }
 
@@ -60,15 +67,15 @@
 #pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return self.mediaFiles.count;
+    return self.mediaFileHandlers.count;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     MediaTableCellView *cellView = [tableView makeViewWithIdentifier:@"MediaTableCell" owner:self];
     
-    if (row < self.mediaFiles.count) {
-        NSURL *fileURL = self.mediaFiles[row];
-        [cellView setupFromURL:fileURL];
+    if (row < self.mediaFileHandlers.count) {
+        FileHandler *fileHandler = self.mediaFileHandlers[row];
+        [cellView setupFromFileHandler:fileHandler];
     }
     
     return cellView;

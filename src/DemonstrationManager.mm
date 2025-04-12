@@ -34,6 +34,8 @@
 												   object:nil];
         
         [self updateDemoScreen];
+
+        self.currentDemonstrationFileId = -1;
     }
     return self;
 }
@@ -47,7 +49,7 @@
 {
     [self updateDemoScreen];
     
-    if (self.isDemonstrationInProgress) {
+    if (self.currentDemonstrationFileId != -1) {
         [self stopDemonstration];
     }
 }
@@ -65,37 +67,32 @@
     }
 }
 
-- (void) demonstrateImage:(NSURL *)imageURL
+- (void) demonstrate:(FileHandler *)fileHandler startPos:(double)startPos
 {
-    if (!imageURL) {
-        NSLog(@"No image URL provided");
+    if (!fileHandler) {
+        NSLog(@"No file handler provided");
         return;
     }
-    
-    [self createWindow];
-    
-    [self.demonstrationWindowController demonstrateImage:imageURL];
-    self.isDemonstrationInProgress = YES;
-}
+	
+	if (self.currentDemonstrationFileId != -1) {
+		[self stopDemonstration];
+	}
 
-- (void) demonstrateVideo:(NSURL *)videoURL startPos:(double)startPos
-{
-    if (!videoURL) {
-        NSLog(@"No video URL provided");
-        return;
-    }
-    
     [self createWindow];
-    
-    [self.demonstrationWindowController demonstrateVideo:videoURL startPos:startPos];
-    self.isDemonstrationInProgress = YES;
+    if (fileHandler.fileType == SupportedFileTypeImage) {
+        [self.demonstrationWindowController demonstrateImage:fileHandler.fileURL];
+    } else if (fileHandler.fileType == SupportedFileTypeVideo) {
+        [self.demonstrationWindowController demonstrateVideo:fileHandler.fileURL startPos:startPos];
+    }
+
+    self.currentDemonstrationFileId = fileHandler.fileId;
 }
 
 - (void) stopDemonstration
 {
 	[self.demonstrationWindowController stopDemonstration];
 	[self.demonstrationWindowController close];
-    self.isDemonstrationInProgress = NO;
+    self.currentDemonstrationFileId = -1;
 }
 
 - (void) createWindow

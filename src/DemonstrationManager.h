@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "FileHandler.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,14 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) DemonstrationWindowController *demonstrationWindowController;
 @property (nonatomic, strong) NSScreen *demoScreen;
 
-@property BOOL isDemonstrationInProgress;
+@property int currentDemonstrationFileId;
 
 + (instancetype)sharedManager;
 
-- (void)demonstrateImage:(NSURL *)imageURL;
-- (void)demonstrateVideo:(NSURL *)videoURL startPos:(double)startPos;
-- (void)demonstrateDocument:(NSURL *)documentURL;
-
+- (void)demonstrate:(FileHandler *)fileHandler startPos:(double)startPos;
 - (void)stopDemonstration;
 
 - (double) getCurrentVideoTime;

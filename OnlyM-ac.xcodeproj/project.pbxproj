@@ -23,6 +23,7 @@
 		B67504E02DA5764D0004FFC7 /* DemonstrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B67504DE2DA5764D0004FFC7 /* DemonstrationWindow.xib */; };
 		B6922FF12DA5C90600F5769D /* LocalizationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6922FEF2DA5C90600F5769D /* LocalizationManager.mm */; };
 		B69230002DA5D0E100F5769D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B6922FFE2DA5D0E100F5769D /* Localizable.xcstrings */; };
+		B69CD3ED2DAA838400BC82A8 /* FileHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = B69CD3EC2DAA838400BC82A8 /* FileHandler.mm */; };
 		B6E280202DA517BD00483567 /* SettingsManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6E2801F2DA517BD00483567 /* SettingsManager.mm */; };
 		B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */; };
 		B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */; };
@@ -55,6 +56,8 @@
 		B6922FEF2DA5C90600F5769D /* LocalizationManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalizationManager.mm; sourceTree = "<group>"; };
 		B6922FF02DA5C90600F5769D /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
 		B69230042DA5D1C400F5769D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Base; path = Base.lproj/Localizable.xcstrings; sourceTree = "<group>"; };
+		B69CD3EB2DAA838400BC82A8 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHandler.h; sourceTree = "<group>"; };
+		B69CD3EC2DAA838400BC82A8 /* FileHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileHandler.mm; sourceTree = "<group>"; };
 		B6E2801E2DA517BD00483567 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
 		B6E2801F2DA517BD00483567 /* SettingsManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SettingsManager.mm; sourceTree = "<group>"; };
 		B6FAE4B42DA461C50008453C /* OperatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperatorWindowController.h; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 		B65FD9242DA51D32003D8FE8 /* Filesystem */ = {
 			isa = PBXGroup;
 			children = (
+				B69CD3EB2DAA838400BC82A8 /* FileHandler.h */,
+				B69CD3EC2DAA838400BC82A8 /* FileHandler.mm */,
 				B67504D02DA5441F0004FFC7 /* EnumerateFilesHelper.h */,
 				B67504D22DA5441F0004FFC7 /* EnumerateFilesHelper.mm */,
 				B67504CF2DA5441F0004FFC7 /* SupportedFileTypes.h */,
@@ -242,6 +247,7 @@
 				B67504D32DA5441F0004FFC7 /* SupportedFileTypes.mm in Sources */,
 				B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */,
 				B6E280202DA517BD00483567 /* SettingsManager.mm in Sources */,
+				B69CD3ED2DAA838400BC82A8 /* FileHandler.mm in Sources */,
 				B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */,
 				B6922FF12DA5C90600F5769D /* LocalizationManager.mm in Sources */,
 				B65FD9252DA51D32003D8FE8 /* SelectFolderHelper.mm in Sources */,

@@ -4,22 +4,18 @@
 
 @implementation MediaTableCellView
 
-- (void)setupFromURL:(NSURL *)url {
-	self.fileUrl = url;
-	self.isDemonstrating = NO;
-    self.titleLabel.stringValue = url.lastPathComponent;
+- (void)setupFromFileHandler:(FileHandler *)fileHandler {
+	self.fileHandler = fileHandler;
+	self.titleLabel.stringValue = fileHandler.fileURL.lastPathComponent;
     
     [self hideOptionalStuff];
 
-    NSString *extension = url.pathExtension.lowercaseString;
-    self.fileType = [SupportedFileTypes getFileTypeForExtension:extension];
-    
-    if (self.fileType == SupportedFileTypeImage) {
-        [self setupForImage:url];
-    } else if (self.fileType == SupportedFileTypeVideo) {
-        [self setupForVideo:url];
-    } else if (self.fileType == SupportedFileTypeDocument) {
-        [self setupForDocument:url];
+    if (self.fileHandler.fileType == SupportedFileTypeImage) {
+        [self setupForImage:self.fileHandler.fileURL];
+    } else if (self.fileHandler.fileType == SupportedFileTypeVideo) {
+        [self setupForVideo:self.fileHandler.fileURL];
+    } else if (self.fileHandler.fileType == SupportedFileTypeDocument) {
+        [self setupForDocument:self.fileHandler.fileURL];
     }
 	
 	[self startUpdateTimer];
@@ -97,25 +93,19 @@
 
 - (IBAction)playClicked:(id)sender
 {
-	self.isDemonstrating = YES;
-    self.playButton.hidden = YES;
-    self.stopButton.hidden = NO;
-	if (self.fileType == SupportedFileTypeImage)
+	if (self.fileHandler.fileType == SupportedFileTypeImage)
 	{
-		[[DemonstrationManager sharedManager] demonstrateImage:self.fileUrl];
-	} else if (self.fileType == SupportedFileTypeVideo)
+		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:0.0];
+	} else if (self.fileHandler.fileType == SupportedFileTypeVideo)
 	{
 		double startPos = self.videoProgressIndicator.doubleValue;
-		[[DemonstrationManager sharedManager] demonstrateVideo:self.fileUrl startPos:startPos];
+		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:startPos];
 	}
 }
 
 - (IBAction)stopClicked:(id)sender
 {
-    self.isDemonstrating = NO;
-    self.playButton.hidden = NO;
-    self.stopButton.hidden = YES;
-	[[DemonstrationManager sharedManager] stopDemonstration];
+ 	[[DemonstrationManager sharedManager] stopDemonstration];
 }
 
 - (IBAction)videoProgressChanged:(id)sender
@@ -131,14 +121,18 @@
 
 - (void)updateUI:(NSTimer *)timer
 {
-    if (self.isDemonstrating && self.fileType == SupportedFileTypeVideo) {
+    BOOL isDemonstrating = [DemonstrationManager sharedManager].currentDemonstrationFileId == self.fileHandler.fileId;
+
+    if (isDemonstrating && self.fileHandler.fileType == SupportedFileTypeVideo) {
         // Update video progress
 		double currentVideoTime = [[DemonstrationManager sharedManager] getCurrentVideoTime];
 		self.videoProgressIndicator.doubleValue = currentVideoTime;
         self.currentVideoPosLabel.stringValue = [self formatTime:currentVideoTime];
     }
     
-	self.playButton.enabled = ![[DemonstrationManager sharedManager] isDemonstrationInProgress];
+	self.playButton.hidden = isDemonstrating;
+    self.stopButton.hidden = !isDemonstrating;
+	
 }
 
 @end 

@@ -1,6 +1,6 @@
 #import <Cocoa/Cocoa.h>
 #import "SupportedFileTypes.h"
-
+#import "FileHandler.h"
 @interface MediaTableCellView : NSTableCellView
 
 @property (nonatomic, weak) IBOutlet NSImageView *thumbnailView;
@@ -15,14 +15,12 @@
 @property (nonatomic, weak) IBOutlet NSImageView *tagVideo;
 @property (nonatomic, weak) IBOutlet NSImageView *tagDocument;
 
-@property (nonatomic, strong) NSURL *fileUrl;
-@property (nonatomic, strong) NSTimer *updateTimer;
+@property (nonatomic, weak) FileHandler *fileHandler;
+@property (nonatomic, weak) NSTimer *updateTimer;
 
 @property double videoDuration;
-@property BOOL isDemonstrating;
-@property SupportedFileType fileType;
 
-- (void)setupFromURL:(NSURL *)url;
+- (void)setupFromFileHandler:(FileHandler *)fileHandler;
 - (NSString *)formatTime:(double)seconds;
 
 - (IBAction)playClicked:(id)sender;
