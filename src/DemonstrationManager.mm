@@ -83,6 +83,8 @@
         [self.demonstrationWindowController demonstrateImage:fileHandler.fileURL];
     } else if (fileHandler.fileType == SupportedFileTypeVideo) {
         [self.demonstrationWindowController demonstrateVideo:fileHandler.fileURL startPos:startPos];
+    } else if (fileHandler.fileType == SupportedFileTypeDocument) {
+        [self.demonstrationWindowController demonstrateDocument:fileHandler.fileURL];
     }
 
     self.currentDemonstrationFileId = fileHandler.fileId;

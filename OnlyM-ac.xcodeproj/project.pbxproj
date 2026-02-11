@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6030FA22F3CEE5600DA6149 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B6030FA12F3CEE5600DA6149 /* Localizable.xcstrings */; };
 		B6055FDF2DA33F5D004B5CD3 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6055FDE2DA33F5D004B5CD3 /* AppDelegate.mm */; };
 		B6055FE12DA33F5F004B5CD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6055FE02DA33F5F004B5CD3 /* Assets.xcassets */; };
 		B6055FE42DA33F5F004B5CD3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B6055FE32DA33F5F004B5CD3 /* Base */; };
@@ -22,8 +23,8 @@
 		B67504DD2DA575710004FFC7 /* DemonstrationWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B67504DC2DA575710004FFC7 /* DemonstrationWindowController.mm */; };
 		B67504E02DA5764D0004FFC7 /* DemonstrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B67504DE2DA5764D0004FFC7 /* DemonstrationWindow.xib */; };
 		B6922FF12DA5C90600F5769D /* LocalizationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6922FEF2DA5C90600F5769D /* LocalizationManager.mm */; };
-		B69230002DA5D0E100F5769D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B6922FFE2DA5D0E100F5769D /* Localizable.xcstrings */; };
 		B69CD3ED2DAA838400BC82A8 /* FileHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = B69CD3EC2DAA838400BC82A8 /* FileHandler.mm */; };
+		B6C0D0F12F0A111100000001 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C0D0F02F0A111100000001 /* PDFKit.framework */; };
 		B6E280202DA517BD00483567 /* SettingsManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6E2801F2DA517BD00483567 /* SettingsManager.mm */; };
 		B6FAE4B92DA461C50008453C /* OperatorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B52DA461C50008453C /* OperatorWindowController.mm */; };
 		B6FAE4BA2DA461C50008453C /* MediaTableCellView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FAE4B72DA461C50008453C /* MediaTableCellView.mm */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6030FA12F3CEE5600DA6149 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B6055FDA2DA33F5D004B5CD3 /* OnlyM-ac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnlyM-ac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6055FDD2DA33F5D004B5CD3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B6055FDE2DA33F5D004B5CD3 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -55,9 +57,9 @@
 		B67504DF2DA5764D0004FFC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DemonstrationWindow.xib; sourceTree = "<group>"; };
 		B6922FEF2DA5C90600F5769D /* LocalizationManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalizationManager.mm; sourceTree = "<group>"; };
 		B6922FF02DA5C90600F5769D /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
-		B69230042DA5D1C400F5769D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Base; path = Base.lproj/Localizable.xcstrings; sourceTree = "<group>"; };
 		B69CD3EB2DAA838400BC82A8 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHandler.h; sourceTree = "<group>"; };
 		B69CD3EC2DAA838400BC82A8 /* FileHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileHandler.mm; sourceTree = "<group>"; };
+		B6C0D0F02F0A111100000001 /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
 		B6E2801E2DA517BD00483567 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
 		B6E2801F2DA517BD00483567 /* SettingsManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SettingsManager.mm; sourceTree = "<group>"; };
 		B6FAE4B42DA461C50008453C /* OperatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperatorWindowController.h; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6C0D0F12F0A111100000001 /* PDFKit.framework in Frameworks */,
 				B61D925C2DA6A0BC00E8CA0F /* AVKit.framework in Frameworks */,
 				B67504D72DA56E980004FFC7 /* CoreMedia.framework in Frameworks */,
 				B67504D52DA56D9C0004FFC7 /* AVFoundation.framework in Frameworks */,
@@ -126,7 +129,7 @@
 				B6055FE72DA33F5F004B5CD3 /* OnlyM_ac.entitlements */,
 				B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */,
 				B67504DE2DA5764D0004FFC7 /* DemonstrationWindow.xib */,
-				B6922FFE2DA5D0E100F5769D /* Localizable.xcstrings */,
+				B6030FA12F3CEE5600DA6149 /* Localizable.xcstrings */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -134,6 +137,7 @@
 		B6055FF02DA341B2004B5CD3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B6C0D0F02F0A111100000001 /* PDFKit.framework */,
 				B61D925B2DA6A0BC00E8CA0F /* AVKit.framework */,
 				B67504D62DA56E980004FFC7 /* CoreMedia.framework */,
 				B6055FF12DA341B2004B5CD3 /* Cocoa.framework */,
@@ -229,7 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6FAE4C62DA50FD10008453C /* OperatorWindow.xib in Resources */,
-				B69230002DA5D0E100F5769D /* Localizable.xcstrings in Resources */,
+				B6030FA22F3CEE5600DA6149 /* Localizable.xcstrings in Resources */,
 				B6055FE12DA33F5F004B5CD3 /* Assets.xcassets in Resources */,
 				B6055FE42DA33F5F004B5CD3 /* Base in Resources */,
 				B67504E02DA5764D0004FFC7 /* DemonstrationWindow.xib in Resources */,
@@ -275,14 +279,6 @@
 				B67504DF2DA5764D0004FFC7 /* Base */,
 			);
 			name = DemonstrationWindow.xib;
-			sourceTree = "<group>";
-		};
-		B6922FFE2DA5D0E100F5769D /* Localizable.xcstrings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B69230042DA5D1C400F5769D /* Base */,
-			);
-			name = Localizable.xcstrings;
 			sourceTree = "<group>";
 		};
 		B6FAE4C42DA50FD00008453C /* OperatorWindow.xib */ = {

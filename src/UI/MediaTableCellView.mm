@@ -1,4 +1,5 @@
 #import <AVFoundation/AVFoundation.h>
+#import <PDFKit/PDFKit.h>
 #import "MediaTableCellView.h"
 #import "DemonstrationManager.h"
 
@@ -94,8 +95,12 @@
 - (void)setupForDocument:(NSURL *)url
 {
     self.tagDocument.hidden = NO;
-    NSImage *image = [[NSImage alloc] initWithContentsOfURL:url];
-    //self.thumbnailView.image = image;
+    PDFDocument *document = [[PDFDocument alloc] initWithURL:url];
+    PDFPage *page = [document pageAtIndex:0];
+    if (page) {
+        NSImage *thumbnail = [page thumbnailOfSize:NSMakeSize(160.0, 120.0) forBox:kPDFDisplayBoxMediaBox];
+        self.thumbnailView.image = thumbnail;
+    }
 }
 
 - (void)hideOptionalStuff
@@ -122,10 +127,15 @@
 	if (self.fileHandler.fileType == SupportedFileTypeImage)
 	{
 		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:0.0];
-	} else if (self.fileHandler.fileType == SupportedFileTypeVideo)
+	}
+	else if (self.fileHandler.fileType == SupportedFileTypeVideo)
 	{
 		double startPos = self.videoProgressIndicator.doubleValue;
 		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:startPos];
+	}
+	else if (self.fileHandler.fileType == SupportedFileTypeDocument)
+	{
+		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:0.0];
 	}
 }
 

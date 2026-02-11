@@ -7,6 +7,7 @@
 
 #import "DemonstrationWindowController.h"
 #import <AVKit/AVKit.h>
+#import <PDFKit/PDFKit.h>
 
 @implementation DemonstrationWindowController
 
@@ -20,6 +21,7 @@
 {
     self.imageView.hidden = NO;
 	self.videoView.hidden = YES;
+    self.pdfView.hidden = YES;
     
     // Set the image
     self.imageView.image = [[NSImage alloc] initWithContentsOfURL:imageURL];
@@ -29,6 +31,7 @@
 {
     self.imageView.hidden = YES;
 	self.videoView.hidden = NO;
+    self.pdfView.hidden = YES;
     
     // Create and configure AVPlayer
     self.player = [[AVPlayer alloc] initWithURL:videoURL];
@@ -42,6 +45,23 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
 }
 
+- (void)demonstrateDocument:(NSURL *)documentURL
+{
+    self.imageView.hidden = YES;
+    self.videoView.hidden = YES;
+    self.pdfView.hidden = NO;
+	
+	// Configure pdf viewer
+	self.pdfView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+	self.pdfView.autoScales = YES;
+	self.pdfView.displayMode = kPDFDisplaySinglePage;
+	self.pdfView.displayDirection = kPDFDisplayDirectionVertical;
+	
+	// Display document
+    PDFDocument *document = [[PDFDocument alloc] initWithURL:documentURL];
+    self.pdfView.document = document;
+}
+
 - (void)playerItemDidReachEnd:(NSNotification *)notification
 {
     [self stopDemonstration];
@@ -53,8 +73,10 @@
         [self.player pause];
         self.player = nil;
     }
+	self.pdfView.document = nil;
     self.imageView.hidden = YES;
 	self.videoView.hidden = YES;
+	self.pdfView.hidden = YES;
 }
 
 - (void)dealloc
