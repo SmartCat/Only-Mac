@@ -38,6 +38,9 @@
 	self.totalVideoDurationLabel.stringValue = @"";
 	self.videoProgressIndicator.doubleValue = 0;
 	self.videoDuration = 0;
+	self.pdfPageLabel.stringValue = @"";
+	self.pdfCurrentPageIdx = 0;
+	self.pdfPagesCount = 0;
 	
 	// Hide all optional UI elements
 	[self hideOptionalStuff];
@@ -95,12 +98,21 @@
 - (void)setupForDocument:(NSURL *)url
 {
     self.tagDocument.hidden = NO;
+	self.pdfPageLabel.hidden = NO;
+	self.pdfPrevPageButton.hidden = NO;
+	self.pdfNextPageButton.hidden = NO;
+	self.pdfPrevPageButton.enabled = NO;
+	self.pdfNextPageButton.enabled = NO;
+	
     PDFDocument *document = [[PDFDocument alloc] initWithURL:url];
+	self.pdfPagesCount = (int)document.pageCount;
     PDFPage *page = [document pageAtIndex:0];
     if (page) {
         NSImage *thumbnail = [page thumbnailOfSize:NSMakeSize(160.0, 120.0) forBox:kPDFDisplayBoxMediaBox];
         self.thumbnailView.image = thumbnail;
     }
+	
+	[self updatePdfUI];
 }
 
 - (void)hideOptionalStuff
@@ -109,6 +121,10 @@
     self.totalVideoDurationLabel.hidden = YES;
     self.videoProgressIndicator.hidden = YES;
 	self.stopButton.hidden = YES;
+	
+	self.pdfPageLabel.hidden = YES;
+	self.pdfPrevPageButton.hidden = YES;
+	self.pdfNextPageButton.hidden = YES;
 
     self.tagImage.hidden = YES;
     self.tagVideo.hidden = YES;
@@ -135,13 +151,27 @@
 	}
 	else if (self.fileHandler.fileType == SupportedFileTypeDocument)
 	{
-		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:0.0];
+		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:self.pdfCurrentPageIdx];
 	}
 }
 
 - (IBAction)stopClicked:(id)sender
 {
  	[[DemonstrationManager sharedManager] stopDemonstration];
+}
+
+- (IBAction)pdfPrevPageClicked:(id)sender
+{
+	self.pdfCurrentPageIdx--;
+	[self updatePdfUI];
+	[[DemonstrationManager sharedManager] updateDemonstration:self.fileHandler startPos:self.pdfCurrentPageIdx];
+}
+
+- (IBAction)pdfNextPageClicked:(id)sender
+{
+	self.pdfCurrentPageIdx++;
+	[self updatePdfUI];
+	[[DemonstrationManager sharedManager] updateDemonstration:self.fileHandler startPos:self.pdfCurrentPageIdx];
 }
 
 - (IBAction)videoProgressChanged:(id)sender
@@ -165,10 +195,22 @@
 		self.videoProgressIndicator.doubleValue = currentVideoTime;
         self.currentVideoPosLabel.stringValue = [self formatTime:currentVideoTime];
     }
+	
+	if (isDemonstrating && self.fileHandler.fileType == SupportedFileTypeDocument) {
+		self.pdfCurrentPageIdx = [[DemonstrationManager sharedManager] getCurrentPage];
+		[self updatePdfUI];
+	}
     
 	self.playButton.hidden = isDemonstrating;
     self.stopButton.hidden = !isDemonstrating;
 	
+}
+
+- (void) updatePdfUI
+{
+	self.pdfPageLabel.stringValue = [NSString stringWithFormat:@"%d/%d", self.pdfCurrentPageIdx+1, self.pdfPagesCount];
+	self.pdfPrevPageButton.enabled = self.pdfCurrentPageIdx > 0;
+	self.pdfNextPageButton.enabled = (self.pdfCurrentPageIdx+1) < self.pdfPagesCount;
 }
 
 @end 

@@ -23,9 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedManager;
 
 - (void)demonstrate:(FileHandler *)fileHandler startPos:(double)startPos;
+- (void)updateDemonstration:(FileHandler *)fileHandler startPos:(double)startPos;
 - (void)stopDemonstration;
 
 - (double) getCurrentVideoTime;
+- (int) getCurrentPage;
 
 @end
 

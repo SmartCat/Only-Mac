@@ -45,7 +45,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
 }
 
-- (void)demonstrateDocument:(NSURL *)documentURL
+- (void)demonstrateDocument:(NSURL *)documentURL pageIdx:(int)pageIdx
 {
     self.imageView.hidden = YES;
     self.videoView.hidden = YES;
@@ -57,9 +57,14 @@
 	self.pdfView.displayMode = kPDFDisplaySinglePage;
 	self.pdfView.displayDirection = kPDFDisplayDirectionVertical;
 	
-	// Display document
+	// Display document page
     PDFDocument *document = [[PDFDocument alloc] initWithURL:documentURL];
-    self.pdfView.document = document;
+	self.pdfView.document = document;
+	if (pageIdx >= 0 && pageIdx < document.pageCount)
+	{
+		PDFPage *page = [document pageAtIndex:pageIdx];
+		[self.pdfView goToPage:page];
+	}
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification
@@ -90,6 +95,14 @@
         return 0.0;
     }
     return CMTimeGetSeconds(self.player.currentTime);
+}
+
+- (int) getCurrentPage
+{
+	if (self.pdfView.hidden || self.pdfView.document == nil || self.pdfView.currentPage == nil) {
+		return -1;
+	}
+	return (int)[self.pdfView.document indexForPage:self.pdfView.currentPage];
 }
 
 @end

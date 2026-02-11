@@ -18,9 +18,10 @@
 
 - (void)demonstrateImage:(NSURL *)imageURL;
 - (void)demonstrateVideo:(NSURL *)videoURL startPos:(double)startPos;
-- (void)demonstrateDocument:(NSURL *)documentURL;
+- (void)demonstrateDocument:(NSURL *)documentURL pageIdx:(int)pageIdx;
 - (void)stopDemonstration;
 
 - (double) getCurrentVideoTime;
+- (int) getCurrentPage;
 
 @end

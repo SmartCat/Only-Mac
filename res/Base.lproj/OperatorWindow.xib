@@ -59,7 +59,7 @@
                                                     <subviews>
                                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XoK-Ra-RMK" userLabel="btnPlay">
                                                             <rect key="frame" x="325" y="18" width="48" height="54"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="play.circle.fill" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nHm-LZ-Fwj">
                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                 <font key="font" metaFont="system"/>
@@ -77,6 +77,28 @@
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="stopClicked:" target="x89-2o-zdl" id="mP3-x0-tTf"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saE-U1-pmW" userLabel="btnPrevPage">
+                                                            <rect key="frame" x="90" y="7.5" width="36" height="36"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarSkipToStartTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="lhj-h9-Q7f">
+                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="pdfPrevPageClicked:" target="x89-2o-zdl" id="2CI-M1-jfX"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAK-FM-VVc" userLabel="btnNextPage">
+                                                            <rect key="frame" x="126" y="7.5" width="36" height="36"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarSkipToEndTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="bqN-X0-ZYc">
+                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="pdfNextPageClicked:" target="x89-2o-zdl" id="3ko-hZ-s7e"/>
                                                             </connections>
                                                         </button>
                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQK-VN-Ivk" userLabel="imgThumbnail">
@@ -126,6 +148,15 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwz-No-VqP" userLabel="lblPdfPos">
+                                                            <rect key="frame" x="90" y="48" width="37" height="16"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="34L-8F-yJk">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
                                                         <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hz-eL-gbm" userLabel="videoNavigation">
                                                             <rect key="frame" x="88" y="-3" width="231" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -139,6 +170,9 @@
                                                     </subviews>
                                                     <connections>
                                                         <outlet property="currentVideoPosLabel" destination="ow5-Rn-jkP" id="6Ol-6G-8iJ"/>
+                                                        <outlet property="pdfNextPageButton" destination="NAK-FM-VVc" id="Ovp-x0-SsV"/>
+                                                        <outlet property="pdfPageLabel" destination="dwz-No-VqP" id="vqs-ov-hDQ"/>
+                                                        <outlet property="pdfPrevPageButton" destination="saE-U1-pmW" id="JuP-84-YXV"/>
                                                         <outlet property="playButton" destination="XoK-Ra-RMK" id="LVf-8K-2gq"/>
                                                         <outlet property="stopButton" destination="BEU-xp-fbc" id="rDq-lk-dYm"/>
                                                         <outlet property="tagDocument" destination="AxB-DA-Yin" id="RKZ-gu-oqO"/>
@@ -210,8 +244,20 @@
             </view>
             <point key="canvasLocation" x="112" y="-46"/>
         </window>
+        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="4zS-F4-BHq">
+            <rect key="frame" x="0.0" y="0.0" width="37" height="16"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="5FK-yt-ydG">
+                <font key="font" usesAppearanceFont="YES"/>
+                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+            </textFieldCell>
+            <point key="canvasLocation" x="-181" y="-311"/>
+        </textField>
     </objects>
     <resources>
+        <image name="NSTouchBarSkipToEndTemplate" width="19" height="16"/>
+        <image name="NSTouchBarSkipToStartTemplate" width="19" height="16"/>
         <image name="display.and.arrow.down" catalog="system" width="19" height="17"/>
         <image name="display.trianglebadge.exclamationmark" catalog="system" width="21" height="16"/>
         <image name="folder.fill.badge.plus" catalog="system" width="20" height="15"/>
