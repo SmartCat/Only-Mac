@@ -1,4 +1,5 @@
 #import <AVFoundation/AVFoundation.h>
+#import <PDFKit/PDFKit.h>
 #import "MediaTableCellView.h"
 #import "DemonstrationManager.h"
 
@@ -19,6 +20,8 @@
         [self setupForVideo:self.fileHandler.fileURL];
     } else if (self.fileHandler.fileType == SupportedFileTypeDocument) {
         [self setupForDocument:self.fileHandler.fileURL];
+	} else if (self.fileHandler.fileType == SupportedFileTypeWeb) {
+		[self setupForWeb:self.fileHandler.fileURL];
     }
 	
 	[self startUpdateTimer];
@@ -37,6 +40,9 @@
 	self.totalVideoDurationLabel.stringValue = @"";
 	self.videoProgressIndicator.doubleValue = 0;
 	self.videoDuration = 0;
+	self.pdfPageLabel.stringValue = @"";
+	self.pdfCurrentPageIdx = 0;
+	self.pdfPagesCount = 0;
 	
 	// Hide all optional UI elements
 	[self hideOptionalStuff];
@@ -94,8 +100,41 @@
 - (void)setupForDocument:(NSURL *)url
 {
     self.tagDocument.hidden = NO;
-    NSImage *image = [[NSImage alloc] initWithContentsOfURL:url];
-    //self.thumbnailView.image = image;
+	self.pdfPageLabel.hidden = NO;
+	self.pdfPrevPageButton.hidden = NO;
+	self.pdfNextPageButton.hidden = NO;
+	self.pdfPrevPageButton.enabled = NO;
+	self.pdfNextPageButton.enabled = NO;
+	
+    PDFDocument *document = [[PDFDocument alloc] initWithURL:url];
+	self.pdfPagesCount = (int)document.pageCount;
+    PDFPage *page = [document pageAtIndex:0];
+    if (page) {
+        NSImage *thumbnail = [page thumbnailOfSize:NSMakeSize(160.0, 120.0) forBox:kPDFDisplayBoxMediaBox];
+        self.thumbnailView.image = thumbnail;
+    }
+	
+	[self updatePdfUI];
+}
+
+- (void)setupForWeb:(NSURL *)url
+{
+	self.tagWeb.hidden = NO;
+
+	NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:url.path];
+	if (icon) {
+		NSSize targetSize = NSMakeSize(160.0, 120.0);
+		NSSize sourceSize = icon.size;
+		// Scale to fit within target while preserving aspect ratio
+		CGFloat widthScale = targetSize.width / sourceSize.width;
+		CGFloat heightScale = targetSize.height / sourceSize.height;
+		CGFloat scale = MIN(widthScale, heightScale);
+		NSSize scaledSize = NSMakeSize(sourceSize.width * scale, sourceSize.height * scale);
+
+		[icon setSize:scaledSize];
+
+		self.thumbnailView.image = icon;
+	}
 }
 
 - (void)hideOptionalStuff
@@ -104,10 +143,15 @@
     self.totalVideoDurationLabel.hidden = YES;
     self.videoProgressIndicator.hidden = YES;
 	self.stopButton.hidden = YES;
+	
+	self.pdfPageLabel.hidden = YES;
+	self.pdfPrevPageButton.hidden = YES;
+	self.pdfNextPageButton.hidden = YES;
 
     self.tagImage.hidden = YES;
     self.tagVideo.hidden = YES;
     self.tagDocument.hidden = YES;
+	self.tagWeb.hidden = YES;
 }
 
 - (NSString *)formatTime:(double)seconds
@@ -122,16 +166,39 @@
 	if (self.fileHandler.fileType == SupportedFileTypeImage)
 	{
 		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:0.0];
-	} else if (self.fileHandler.fileType == SupportedFileTypeVideo)
+	}
+	else if (self.fileHandler.fileType == SupportedFileTypeVideo)
 	{
 		double startPos = self.videoProgressIndicator.doubleValue;
 		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:startPos];
+	}
+	else if (self.fileHandler.fileType == SupportedFileTypeDocument)
+	{
+		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:self.pdfCurrentPageIdx];
+	}
+	else if (self.fileHandler.fileType == SupportedFileTypeWeb)
+	{
+		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:0.0];
 	}
 }
 
 - (IBAction)stopClicked:(id)sender
 {
  	[[DemonstrationManager sharedManager] stopDemonstration];
+}
+
+- (IBAction)pdfPrevPageClicked:(id)sender
+{
+	self.pdfCurrentPageIdx--;
+	[self updatePdfUI];
+	[[DemonstrationManager sharedManager] updateDemonstration:self.fileHandler startPos:self.pdfCurrentPageIdx];
+}
+
+- (IBAction)pdfNextPageClicked:(id)sender
+{
+	self.pdfCurrentPageIdx++;
+	[self updatePdfUI];
+	[[DemonstrationManager sharedManager] updateDemonstration:self.fileHandler startPos:self.pdfCurrentPageIdx];
 }
 
 - (IBAction)videoProgressChanged:(id)sender
@@ -155,10 +222,22 @@
 		self.videoProgressIndicator.doubleValue = currentVideoTime;
         self.currentVideoPosLabel.stringValue = [self formatTime:currentVideoTime];
     }
+	
+	if (isDemonstrating && self.fileHandler.fileType == SupportedFileTypeDocument) {
+		self.pdfCurrentPageIdx = [[DemonstrationManager sharedManager] getCurrentPage];
+		[self updatePdfUI];
+	}
     
 	self.playButton.hidden = isDemonstrating;
     self.stopButton.hidden = !isDemonstrating;
 	
+}
+
+- (void) updatePdfUI
+{
+	self.pdfPageLabel.stringValue = [NSString stringWithFormat:@"%d/%d", self.pdfCurrentPageIdx+1, self.pdfPagesCount];
+	self.pdfPrevPageButton.enabled = self.pdfCurrentPageIdx > 0;
+	self.pdfNextPageButton.enabled = (self.pdfCurrentPageIdx+1) < self.pdfPagesCount;
 }
 
 @end 

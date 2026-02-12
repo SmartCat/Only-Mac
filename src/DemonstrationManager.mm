@@ -83,9 +83,36 @@
         [self.demonstrationWindowController demonstrateImage:fileHandler.fileURL];
     } else if (fileHandler.fileType == SupportedFileTypeVideo) {
         [self.demonstrationWindowController demonstrateVideo:fileHandler.fileURL startPos:startPos];
+    } else if (fileHandler.fileType == SupportedFileTypeDocument) {
+		[self.demonstrationWindowController demonstrateDocument:fileHandler.fileURL pageIdx:(int)startPos];
+	} else if (fileHandler.fileType == SupportedFileTypeWeb) {
+		[self.demonstrationWindowController demonstrateWebPage:fileHandler.fileURL];
     }
 
     self.currentDemonstrationFileId = fileHandler.fileId;
+}
+
+- (void)updateDemonstration:(FileHandler *)fileHandler startPos:(double)startPos
+{
+	if (!fileHandler) {
+		NSLog(@"No file handler provided");
+		return;
+	}
+	
+	if (self.currentDemonstrationFileId != fileHandler.fileId) {
+		//NSLog(@"Can't update demonstration - another file");
+		return;
+	}
+	
+	if (fileHandler.fileType == SupportedFileTypeImage) {
+		// Do nothing
+	} else if (fileHandler.fileType == SupportedFileTypeVideo) {
+		// TODO: video pos
+	} else if (fileHandler.fileType == SupportedFileTypeDocument) {
+		[self.demonstrationWindowController demonstrateDocument:fileHandler.fileURL pageIdx:(int)startPos];
+	} else if (fileHandler.fileType == SupportedFileTypeWeb) {
+		// Do nothing
+	}
 }
 
 - (void) stopDemonstration
@@ -114,6 +141,11 @@
 - (double) getCurrentVideoTime
 {
     return [self.demonstrationWindowController getCurrentVideoTime];
+}
+
+- (int) getCurrentPage
+{
+	return [self.demonstrationWindowController getCurrentPage];
 }
 
 @end

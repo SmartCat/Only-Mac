@@ -7,6 +7,8 @@
 
 #import "DemonstrationWindowController.h"
 #import <AVKit/AVKit.h>
+#import <PDFKit/PDFKit.h>
+#import <WebKit/WebKit.h>
 
 @implementation DemonstrationWindowController
 
@@ -20,6 +22,8 @@
 {
     self.imageView.hidden = NO;
 	self.videoView.hidden = YES;
+    self.pdfView.hidden = YES;
+	self.webView.hidden = YES;
     
     // Set the image
     self.imageView.image = [[NSImage alloc] initWithContentsOfURL:imageURL];
@@ -29,6 +33,8 @@
 {
     self.imageView.hidden = YES;
 	self.videoView.hidden = NO;
+    self.pdfView.hidden = YES;
+	self.webView.hidden = YES;
     
     // Create and configure AVPlayer
     self.player = [[AVPlayer alloc] initWithURL:videoURL];
@@ -42,6 +48,54 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
 }
 
+- (void)demonstrateDocument:(NSURL *)documentURL pageIdx:(int)pageIdx
+{
+    self.imageView.hidden = YES;
+    self.videoView.hidden = YES;
+    self.pdfView.hidden = NO;
+	self.webView.hidden = YES;
+	
+	// Configure pdf viewer
+	self.pdfView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+	self.pdfView.autoScales = YES;
+	self.pdfView.displayMode = kPDFDisplaySinglePage;
+	self.pdfView.displayDirection = kPDFDisplayDirectionVertical;
+	
+	// Display document page
+    PDFDocument *document = [[PDFDocument alloc] initWithURL:documentURL];
+	self.pdfView.document = document;
+	if (pageIdx >= 0 && pageIdx < document.pageCount)
+	{
+		PDFPage *page = [document pageAtIndex:pageIdx];
+		[self.pdfView goToPage:page];
+	}
+}
+
+- (void)demonstrateWebPage:(NSURL *)fileURL
+{
+	self.imageView.hidden = YES;
+	self.videoView.hidden = YES;
+	self.pdfView.hidden = YES;
+	self.webView.hidden = NO;
+
+	self.webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+	
+	NSError *error = nil;
+	NSString *content = [NSString stringWithContentsOfURL:fileURL usedEncoding:NULL error:&error];
+	if (error || content.length == 0) {
+		return;
+	}
+
+	NSArray<NSString *> *lines = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+	if (lines.count == 0) {
+		return;
+	}
+	
+	NSURL *url = [NSURL URLWithString:lines[0]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	[self.webView loadRequest:request];
+}
+
 - (void)playerItemDidReachEnd:(NSNotification *)notification
 {
     [self stopDemonstration];
@@ -53,8 +107,12 @@
         [self.player pause];
         self.player = nil;
     }
+	self.pdfView.document = nil;
+	[self.webView stopLoading];
     self.imageView.hidden = YES;
 	self.videoView.hidden = YES;
+	self.pdfView.hidden = YES;
+	self.webView.hidden = YES;
 }
 
 - (void)dealloc
@@ -68,6 +126,14 @@
         return 0.0;
     }
     return CMTimeGetSeconds(self.player.currentTime);
+}
+
+- (int) getCurrentPage
+{
+	if (self.pdfView.hidden || self.pdfView.document == nil || self.pdfView.currentPage == nil) {
+		return -1;
+	}
+	return (int)[self.pdfView.document indexForPage:self.pdfView.currentPage];
 }
 
 @end
