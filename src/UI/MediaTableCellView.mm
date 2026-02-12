@@ -123,7 +123,16 @@
 
 	NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:url.path];
 	if (icon) {
-		[icon setSize:NSMakeSize(80.0, 60.0)];
+		NSSize targetSize = NSMakeSize(160.0, 120.0);
+		NSSize sourceSize = icon.size;
+		// Scale to fit within target while preserving aspect ratio
+		CGFloat widthScale = targetSize.width / sourceSize.width;
+		CGFloat heightScale = targetSize.height / sourceSize.height;
+		CGFloat scale = MIN(widthScale, heightScale);
+		NSSize scaledSize = NSMakeSize(sourceSize.width * scale, sourceSize.height * scale);
+
+		[icon setSize:scaledSize];
+
 		self.thumbnailView.image = icon;
 	}
 }
