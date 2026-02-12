@@ -20,6 +20,8 @@
         [self setupForVideo:self.fileHandler.fileURL];
     } else if (self.fileHandler.fileType == SupportedFileTypeDocument) {
         [self setupForDocument:self.fileHandler.fileURL];
+	} else if (self.fileHandler.fileType == SupportedFileTypeWeb) {
+		[self setupForWeb:self.fileHandler.fileURL];
     }
 	
 	[self startUpdateTimer];
@@ -115,6 +117,17 @@
 	[self updatePdfUI];
 }
 
+- (void)setupForWeb:(NSURL *)url
+{
+	self.tagWeb.hidden = NO;
+
+	NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:url.path];
+	if (icon) {
+		[icon setSize:NSMakeSize(80.0, 60.0)];
+		self.thumbnailView.image = icon;
+	}
+}
+
 - (void)hideOptionalStuff
 {
     self.currentVideoPosLabel.hidden = YES;
@@ -129,6 +142,7 @@
     self.tagImage.hidden = YES;
     self.tagVideo.hidden = YES;
     self.tagDocument.hidden = YES;
+	self.tagWeb.hidden = YES;
 }
 
 - (NSString *)formatTime:(double)seconds
@@ -152,6 +166,10 @@
 	else if (self.fileHandler.fileType == SupportedFileTypeDocument)
 	{
 		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:self.pdfCurrentPageIdx];
+	}
+	else if (self.fileHandler.fileType == SupportedFileTypeWeb)
+	{
+		[[DemonstrationManager sharedManager] demonstrate:self.fileHandler startPos:0.0];
 	}
 }
 

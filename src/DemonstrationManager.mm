@@ -85,6 +85,8 @@
         [self.demonstrationWindowController demonstrateVideo:fileHandler.fileURL startPos:startPos];
     } else if (fileHandler.fileType == SupportedFileTypeDocument) {
 		[self.demonstrationWindowController demonstrateDocument:fileHandler.fileURL pageIdx:(int)startPos];
+	} else if (fileHandler.fileType == SupportedFileTypeWeb) {
+		[self.demonstrationWindowController demonstrateWebPage:fileHandler.fileURL];
     }
 
     self.currentDemonstrationFileId = fileHandler.fileId;
@@ -108,6 +110,8 @@
 		// TODO: video pos
 	} else if (fileHandler.fileType == SupportedFileTypeDocument) {
 		[self.demonstrationWindowController demonstrateDocument:fileHandler.fileURL pageIdx:(int)startPos];
+	} else if (fileHandler.fileType == SupportedFileTypeWeb) {
+		// Do nothing
 	}
 }
 

@@ -8,6 +8,7 @@
 #import "DemonstrationWindowController.h"
 #import <AVKit/AVKit.h>
 #import <PDFKit/PDFKit.h>
+#import <WebKit/WebKit.h>
 
 @implementation DemonstrationWindowController
 
@@ -22,6 +23,7 @@
     self.imageView.hidden = NO;
 	self.videoView.hidden = YES;
     self.pdfView.hidden = YES;
+	self.webView.hidden = YES;
     
     // Set the image
     self.imageView.image = [[NSImage alloc] initWithContentsOfURL:imageURL];
@@ -32,6 +34,7 @@
     self.imageView.hidden = YES;
 	self.videoView.hidden = NO;
     self.pdfView.hidden = YES;
+	self.webView.hidden = YES;
     
     // Create and configure AVPlayer
     self.player = [[AVPlayer alloc] initWithURL:videoURL];
@@ -50,6 +53,7 @@
     self.imageView.hidden = YES;
     self.videoView.hidden = YES;
     self.pdfView.hidden = NO;
+	self.webView.hidden = YES;
 	
 	// Configure pdf viewer
 	self.pdfView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
@@ -67,6 +71,31 @@
 	}
 }
 
+- (void)demonstrateWebPage:(NSURL *)fileURL
+{
+	self.imageView.hidden = YES;
+	self.videoView.hidden = YES;
+	self.pdfView.hidden = YES;
+	self.webView.hidden = NO;
+
+	self.webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+	
+	NSError *error = nil;
+	NSString *content = [NSString stringWithContentsOfURL:fileURL usedEncoding:NULL error:&error];
+	if (error || content.length == 0) {
+		return;
+	}
+
+	NSArray<NSString *> *lines = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+	if (lines.count == 0) {
+		return;
+	}
+	
+	NSURL *url = [NSURL URLWithString:lines[0]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	[self.webView loadRequest:request];
+}
+
 - (void)playerItemDidReachEnd:(NSNotification *)notification
 {
     [self stopDemonstration];
@@ -79,9 +108,11 @@
         self.player = nil;
     }
 	self.pdfView.document = nil;
+	[self.webView stopLoading];
     self.imageView.hidden = YES;
 	self.videoView.hidden = YES;
 	self.pdfView.hidden = YES;
+	self.webView.hidden = YES;
 }
 
 - (void)dealloc

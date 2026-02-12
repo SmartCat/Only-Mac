@@ -6,6 +6,7 @@ typedef NS_ENUM(NSInteger, SupportedFileType) {
     SupportedFileTypeImage,
     SupportedFileTypeVideo,
     SupportedFileTypeDocument,
+	SupportedFileTypeWeb,
 
     SupportedFileTypeCount,
 };
@@ -14,4 +15,3 @@ typedef NS_ENUM(NSInteger, SupportedFileType) {
 + (SupportedFileType)getFileTypeForExtension:(NSString *)extension;
 
 @end
-

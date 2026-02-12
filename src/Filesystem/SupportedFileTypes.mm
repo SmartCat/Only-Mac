@@ -10,6 +10,8 @@
             return @[@"mp4", @"mov", @"avi", @"mkv", @"wmv"];
         case SupportedFileTypeDocument:
             return @[@"pdf"];
+		case SupportedFileTypeWeb:
+			return @[@"url"];
 		default:
 			return @[];
     }

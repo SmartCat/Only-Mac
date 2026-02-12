@@ -121,6 +121,11 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="text.document.fill" catalog="system" id="rs5-WZ-lih"/>
                                                         </imageView>
+                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UWn-YA-N4S" userLabel="imgTagForWeb">
+                                                            <rect key="frame" x="90" y="67" width="20" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bookmark.fill" catalog="system" id="lUg-MG-QlF"/>
+                                                        </imageView>
                                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Efa-w3-mGb" userLabel="lblFilename">
                                                             <rect key="frame" x="111" y="71" width="219" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -178,6 +183,7 @@
                                                         <outlet property="tagDocument" destination="AxB-DA-Yin" id="RKZ-gu-oqO"/>
                                                         <outlet property="tagImage" destination="SkX-Dw-J4d" id="7ZX-IT-Pkm"/>
                                                         <outlet property="tagVideo" destination="IqU-k4-06X" id="TL6-rw-gfZ"/>
+                                                        <outlet property="tagWeb" destination="UWn-YA-N4S" id="u8D-wV-Lfs"/>
                                                         <outlet property="thumbnailView" destination="dQK-VN-Ivk" id="zzu-38-k2B"/>
                                                         <outlet property="titleLabel" destination="Efa-w3-mGb" id="DDG-40-Ld0"/>
                                                         <outlet property="totalVideoDurationLabel" destination="nrI-cp-DGx" id="cLD-P2-jJr"/>
@@ -244,20 +250,11 @@
             </view>
             <point key="canvasLocation" x="112" y="-46"/>
         </window>
-        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="4zS-F4-BHq">
-            <rect key="frame" x="0.0" y="0.0" width="37" height="16"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="5FK-yt-ydG">
-                <font key="font" usesAppearanceFont="YES"/>
-                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-            </textFieldCell>
-            <point key="canvasLocation" x="-181" y="-311"/>
-        </textField>
     </objects>
     <resources>
         <image name="NSTouchBarSkipToEndTemplate" width="19" height="16"/>
         <image name="NSTouchBarSkipToStartTemplate" width="19" height="16"/>
+        <image name="bookmark.fill" catalog="system" width="14" height="16"/>
         <image name="display.and.arrow.down" catalog="system" width="19" height="17"/>
         <image name="display.trianglebadge.exclamationmark" catalog="system" width="21" height="16"/>
         <image name="folder.fill.badge.plus" catalog="system" width="20" height="15"/>

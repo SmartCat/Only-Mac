@@ -19,6 +19,7 @@
 @property (nonatomic, weak) IBOutlet NSImageView *tagImage;
 @property (nonatomic, weak) IBOutlet NSImageView *tagVideo;
 @property (nonatomic, weak) IBOutlet NSImageView *tagDocument;
+@property (nonatomic, weak) IBOutlet NSImageView *tagWeb;
 
 @property (nonatomic, weak) FileHandler *fileHandler;
 @property (nonatomic, weak) NSTimer *updateTimer;
