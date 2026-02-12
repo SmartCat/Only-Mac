@@ -11,7 +11,7 @@
         case SupportedFileTypeDocument:
             return @[@"pdf"];
 		case SupportedFileTypeWeb:
-			return @[@"url"];
+			return @[@"web"];
 		default:
 			return @[];
     }
